@@ -4,15 +4,16 @@ import myConnection from "./config.js";
 import bodyParser from "body-parser";
 import express from "express";
 
-const app = express();
-app.use(bodyParser.json());
-app.use(express.static("public"));
+const app = express(); // Create an express server instance
+
+app.use(bodyParser.json()); // Parse JSON data in incoming requests
+app.use(express.static("public")); // // Serve static files from /public folder (like HTML, images, etc.)
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
+  next(); // Continue to the next middleware or route
 });
 
 // Get req - meals
